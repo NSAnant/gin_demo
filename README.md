@@ -5,7 +5,7 @@ A Flutter assginment from Dkatalis for Flutter Developer.
 ## Getting Started
 
 Please find resources for more details. 
-- [Requrement](https://github.com/NSAnant/gin_demo/blob/master/Flutter_Assignment_%20Dkatalis.pdf)
+- [Requirements](https://github.com/NSAnant/gin_demo/blob/master/Flutter_Assignment_%20Dkatalis.pdf)
 
 A few resources to get you started if this is your first Flutter project:
 
