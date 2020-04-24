@@ -1,10 +1,10 @@
 # gin_app
 
-A new Flutter application.
+A Flutter assginment from Dkatalis for Flutter Developer.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Please find resources for more details. 
 
 A few resources to get you started if this is your first Flutter project:
 
