@@ -8,15 +8,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _numberOfSteps = 5;
+  int _numberOfSteps = 4;
   int _currentStep = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          SizedBox(
-            height: 50,
+          Center(
             child: CustomStepper(
               numberOfSteps: _numberOfSteps,
               currentStep: _currentStep,
@@ -42,32 +41,51 @@ class CustomStepper extends StatefulWidget {
 class _CustomStepperState extends State<CustomStepper> {
   @override
   Widget build(BuildContext context) {
-    return _drawStep();
+    return _drawSteps();
   }
 
-  Widget _drawStep() {
+  Widget _drawSteps() {
+    List<Widget> children = List<Widget>();
+    for (var step = 1; step <= widget.numberOfSteps; step++) {
+      children.addAll(_drawStep(step));
+    }
     return Row(
-      children: <Widget>[
-        _drawLine(),
-        _drawCircle(),
-        _drawLine(),
-      ],
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children,
     );
+  }
+
+  List<Widget> _drawStep(index) {
+    return [
+      _drawLine(),
+      _drawCircle(index),
+      _drawLine(),
+    ];
   }
 
   Widget _drawLine() {
     return Container(
       height: 4,
-      width: 50,
+      width: 20,
       color: Colors.black,
     );
   }
 
-  Widget _drawCircle() {
+  Widget _drawCircle(index) {
     return Container(
       height: 50,
       width: 50,
-      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+      child: Center(
+        child: Text('$index'),
+      ),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white30,
+        border: Border.all(
+          width: 3.0,
+          color: Colors.black,
+        ),
+      ),
     );
   }
 }
