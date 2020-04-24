@@ -15,7 +15,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Expanded(
+          SizedBox(
+            height: 50,
             child: CustomStepper(
               numberOfSteps: _numberOfSteps,
               currentStep: _currentStep,
@@ -41,11 +42,31 @@ class CustomStepper extends StatefulWidget {
 class _CustomStepperState extends State<CustomStepper> {
   @override
   Widget build(BuildContext context) {
-    return _drawCircle();
+    return _drawStep();
+  }
+
+  Widget _drawStep() {
+    return Row(
+      children: <Widget>[
+        _drawLine(),
+        _drawCircle(),
+        _drawLine(),
+      ],
+    );
+  }
+
+  Widget _drawLine() {
+    return Container(
+      height: 4,
+      width: 50,
+      color: Colors.black,
+    );
   }
 
   Widget _drawCircle() {
     return Container(
+      height: 50,
+      width: 50,
       decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
     );
   }
