@@ -19,9 +19,14 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primaryColor: AppColors.bgBlue,
       ),
       home: MyHomePage(),
     );
   }
+}
+
+class AppColors {
+  static const bgWhite = Color.fromRGBO(248, 248, 248, 1);
+  static const bgBlue = Color.fromRGBO(67, 121, 244, 1);
 }
