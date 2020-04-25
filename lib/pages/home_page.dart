@@ -25,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Icons.arrow_back,
                   color: Colors.white,
                 ),
+                onPressed: _resetStepProgress,
               )
             : null,
         title: Text(_currentStep > 1 ? 'Create Account' : ""),
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           left: 0,
           top: 100,
           child: SingleChildScrollView(
-            child: _getContentForStep(0),
+            child: _getContentForStep(_currentStep),
           ),
         ),
       ]),
@@ -52,10 +53,38 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _getContentForStep(index) {
-    return _emailWidget();
+    switch (index) {
+      case 1:
+        return EmailPage(
+          onStepCompletion: () {
+            setState(() {
+              _currentStep = 2;
+            });
+          },
+        );
+      case 2:
+        return Container(
+          color: Colors.green,
+        );
+    }
   }
 
-  Widget _emailWidget() {
+  _resetStepProgress() {
+    setState(() {
+      _currentStep = 1;
+    });
+  }
+}
+
+class EmailPage extends StatelessWidget {
+  final VoidCallback onStepCompletion;
+  const EmailPage({
+    Key key,
+    this.onStepCompletion,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       decoration:
@@ -103,7 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: RaisedButton(
               textColor: Colors.white,
               color: AppColors.bgBlue.withOpacity(0.8),
-              onPressed: () {},
+              onPressed: () {
+                // check validity and call..
+                onStepCompletion();
+              },
               child: Text('Next'),
             ),
           ),
@@ -118,13 +150,7 @@ class BackgroundClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-//    path.lineTo(0, size.height);
-//    path.lineTo(size.height, size.height);
-//    path.lineTo(size.height, 0);
-//    path.cubicTo(size.width / 4, 3 * size.height / 4, 3 * size.width / 4,
-//        size.height / 4, size.width, size.height);
 
-//    path.moveTo(0, 100);
     path.cubicTo(0, size.width, 0, 50, 100, size.width);
     return path;
   }
