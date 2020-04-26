@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gin_app/Helper/UIHelper.dart';
+import 'package:gin_app/main.dart';
 
 class Password_page extends StatefulWidget {
   final VoidCallback onStepCompletion;
