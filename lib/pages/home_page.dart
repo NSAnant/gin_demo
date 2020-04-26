@@ -13,7 +13,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _numberOfSteps = 4;
-  int _currentStep = 2;
+  int _currentStep = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           bottom: 0,
           right: 0,
           left: 0,
-          top: 100,
+          top: 50,
           child: SingleChildScrollView(
             child: _getContentForStep(_currentStep),
           ),
@@ -85,62 +85,65 @@ class EmailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      decoration:
-          BoxDecoration(color: AppColors.bgWhite, shape: BoxShape.rectangle),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          UIHelper.LargeVerticalSpace,
-          RichText(
-            text: TextSpan(
-              text: "Welcome to \nGIN ",
-              style: Theme.of(context)
-                  .textTheme
-                  .display3
-                  .apply(color: Colors.black),
-              children: <TextSpan>[
-                TextSpan(
-                    text: 'Finans',
-                    style: Theme.of(context)
-                        .textTheme
-                        .display3
-                        .apply(color: Colors.blueAccent)),
-              ],
+    return ClipPath(
+      clipper: BackgroundClipper(),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        decoration:
+            BoxDecoration(color: AppColors.bgWhite, shape: BoxShape.rectangle),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            UIHelper.LargeVerticalSpace,
+            RichText(
+              text: TextSpan(
+                text: "Welcome to \nGIN ",
+                style: Theme.of(context)
+                    .textTheme
+                    .display3
+                    .apply(color: Colors.black),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'Finans',
+                      style: Theme.of(context)
+                          .textTheme
+                          .display3
+                          .apply(color: Colors.blueAccent)),
+                ],
+              ),
             ),
-          ),
-          UIHelper.smallVerticalSpace,
-          Text(
-            'Welcom to bank of The Future. \nManage and track your accoutns on the go.',
-            style: Theme.of(context).textTheme.title,
-          ),
-          UIHelper.smallVerticalSpace,
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Email",
-              isDense: true,
-              prefixIcon: Icon(Icons.email),
+            UIHelper.smallVerticalSpace,
+            Text(
+              'Welcom to bank of The Future. \nManage and track your accoutns on the go.',
+              style: Theme.of(context).textTheme.title,
             ),
-          ),
-          UIHelper.LargeVerticalSpace,
-          SizedBox(
-            height: 50,
-            child: RaisedButton(
-              textColor: Colors.white,
-              color: AppColors.bgBlue.withOpacity(0.8),
-              onPressed: () {
-                // check validity and call..
-                onStepCompletion();
-              },
-              child: Text('Next'),
+            UIHelper.smallVerticalSpace,
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: "Email",
+                isDense: true,
+                prefixIcon: Icon(Icons.email),
+              ),
             ),
-          ),
-          UIHelper.LargeVerticalSpace,
-        ],
+            UIHelper.LargeVerticalSpace,
+            SizedBox(
+              height: 50,
+              child: RaisedButton(
+                textColor: Colors.white,
+                color: AppColors.bgBlue.withOpacity(0.8),
+                onPressed: () {
+                  // check validity and call..
+                  onStepCompletion();
+                },
+                child: Text('Next'),
+              ),
+            ),
+            UIHelper.LargeVerticalSpace,
+          ],
+        ),
       ),
     );
   }
@@ -149,9 +152,13 @@ class EmailPage extends StatelessWidget {
 class BackgroundClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = Path();
-
-    path.cubicTo(0, size.width, 0, 50, 100, size.width);
+    Path path = Path();
+    path.moveTo(size.width, 100);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.lineTo(0, 100);
+    path.quadraticBezierTo(0, 0, 100, 20);
+    path.close();
     return path;
   }
 
