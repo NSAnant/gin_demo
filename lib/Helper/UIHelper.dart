@@ -10,4 +10,7 @@ class UIHelper {
   static const LargeVerticalSpace = SizedBox(
     height: 40,
   );
+  static const smallHorizontalSpace = SizedBox(
+    width: 20,
+  );
 }
