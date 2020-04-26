@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gin_app/Helper/UIHelper.dart';
+import 'package:gin_app/main.dart';
 import 'package:gin_app/pages/email_page.dart';
 import 'package:gin_app/pages/password_page.dart';
 import 'package:gin_app/wigets/custom_widget.dart';
@@ -13,7 +16,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _numberOfSteps = 4;
-  int _currentStep = 2;
+  int _currentStep = 3;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +74,11 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         );
       case 3:
+        return Info_page(onStepCompletion: () {
+          setState(() {
+            _currentStep = 4;
+          });
+        });
     }
   }
 
@@ -78,5 +86,145 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentStep = 1;
     });
+  }
+}
+
+class Info_page extends StatefulWidget {
+  final VoidCallback onStepCompletion;
+
+  const Info_page({Key key, this.onStepCompletion}) : super(key: key);
+  @override
+  _Info_pageState createState() => _Info_pageState();
+}
+
+class _Info_pageState extends State<Info_page> {
+  String activationReason;
+  String income;
+  String exp;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(20, 50, 20, 10),
+      child: Form(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            DropdownButtonFormField(
+              isDense: true,
+              decoration: InputDecoration(
+                hintText: 'hint Text',
+                labelText: 'Goal for activation',
+                border: OutlineInputBorder(),
+                fillColor: Colors.white,
+                filled: true,
+              ),
+              items: [
+                "- Choose Option -",
+                "Marriage",
+                "House",
+                "Car",
+                "Bike",
+                "Traval"
+              ].map((value) {
+                return DropdownMenuItem<String>(
+                  child: Text('$value'),
+                  value: value,
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  activationReason = value;
+                });
+              },
+              value: activationReason,
+            ),
+            UIHelper.smallVerticalSpace,
+            DropdownButtonFormField(
+              isDense: true,
+              decoration: InputDecoration(
+                  hasFloatingPlaceholder: false,
+                  labelText: 'Monthly Income',
+                  border: OutlineInputBorder(),
+                  fillColor: Colors.white,
+                  filled: true),
+              items: [
+                "- Choose Option -",
+                "1000 - 5,000",
+                "5000 - 10,000",
+                "10,000 - 20,000",
+                "20,000 - 30,000",
+                "30,000 - 50,000",
+                "50,000 - 1,00,000",
+                "more than 1,00,000",
+              ].map((value) {
+                return DropdownMenuItem<String>(
+                  child: Text('$value'),
+                  value: value,
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  income = value;
+                });
+              },
+              value: income,
+            ),
+            UIHelper.smallVerticalSpace,
+            DropdownButtonFormField(
+              isDense: true,
+              decoration: InputDecoration(
+                  hasFloatingPlaceholder: false,
+                  labelText: 'Monthly Income',
+                  border: OutlineInputBorder(),
+                  fillColor: Colors.white,
+                  filled: true),
+              items: [
+                "- Choose Option -",
+                "300 - 1,000",
+                "1000 - 5000",
+                "5,000 - 10,000",
+                "10,000 - 20,000",
+                "20,000 - 30,000",
+                "30,000 - 50,000",
+                "50,000 - 1,00,000",
+                "more than 1,00,000",
+              ].map((value) {
+                return DropdownMenuItem<String>(
+                  child: Text('$value'),
+                  value: value,
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  exp = value;
+                });
+              },
+              value: exp,
+            ),
+            UIHelper.smallVerticalSpace,
+            SizedBox(
+              height: 50,
+              child: RaisedButton(
+                textColor: Colors.white,
+                color: AppColors.bgWhite.withOpacity(0.4),
+                onPressed: () {
+                  // check validity and call..
+                  widget.onStepCompletion();
+                },
+                child: Text('Next'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
