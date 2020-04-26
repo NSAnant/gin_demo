@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gin_app/main.dart';
 
 class CustomStepper extends StatefulWidget {
   final int numberOfSteps;
@@ -68,7 +69,7 @@ class _CustomStepperState extends State<CustomStepper> {
       ),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isCompleted(index) ? Colors.green : Colors.white70,
+        color: isCompleted(index) ? Colors.green : AppColors.bgWhite,
         border: Border.all(
           width: 2.0,
           color: Colors.black,
