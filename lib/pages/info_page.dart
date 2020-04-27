@@ -18,7 +18,10 @@ class _Info_pageState extends State<Info_page> {
 
   @override
   void initState() {
-    // TODO: implement initState
+//    // TODO: implement initState
+//    activationReason = "- Choose Option -";
+//    income = "- Choose Option -";
+//    exp = "- Choose Option -";
     super.initState();
   }
 
@@ -32,48 +35,45 @@ class _Info_pageState extends State<Info_page> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            DropdownButtonFormField(
-              validator: (value) {
-                return value == null
-                    ? "Please Select Goal for activation"
-                    : null;
-              },
-              isDense: true,
-              decoration: InputDecoration(
-                hintText: 'hint Text',
-                labelText: 'Goal for activation',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  gapPadding: 0,
+            Container(
+              padding: EdgeInsets.only(top: 2, bottom: 2),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(5)),
+              child: DropdownButtonFormField(
+                validator: (value) {
+                  return value == null || value == "- Choose Option -"
+                      ? "Please Select Goal for activation"
+                      : null;
+                },
+                isDense: true,
+                decoration: InputDecoration(
+                  hintText: 'hint Text',
+                  labelText: 'Goal for activation',
+                  contentPadding: EdgeInsets.all(5),
+                  fillColor: Colors.white,
+                  filled: true,
                 ),
-                contentPadding: EdgeInsets.all(5),
-                fillColor: Colors.white,
-                filled: true,
+                items:
+                    ["Marriage", "House", "Car", "Bike", "Traval"].map((value) {
+                  return DropdownMenuItem<String>(
+                    child: Text('$value'),
+                    value: value,
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    activationReason = value;
+                  });
+                },
+                value: activationReason,
               ),
-              items: [
-                "- Choose Option -",
-                "Marriage",
-                "House",
-                "Car",
-                "Bike",
-                "Traval"
-              ].map((value) {
-                return DropdownMenuItem<String>(
-                  child: Text('$value'),
-                  value: value,
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  activationReason = value;
-                });
-              },
-              value: activationReason,
             ),
             UIHelper.smallVerticalSpace,
             DropdownButtonFormField(
               validator: (value) {
-                return value == null ? "Please Select Monthly Income" : null;
+                return value == null || value == "- Choose Option -"
+                    ? "Please Select Monthly Income"
+                    : null;
               },
               isDense: true,
               decoration: InputDecoration(
@@ -87,7 +87,6 @@ class _Info_pageState extends State<Info_page> {
                   fillColor: Colors.white,
                   filled: true),
               items: [
-                "- Choose Option -",
                 "1000 - 5,000",
                 "5000 - 10,000",
                 "10,000 - 20,000",
@@ -111,7 +110,9 @@ class _Info_pageState extends State<Info_page> {
             UIHelper.smallVerticalSpace,
             DropdownButtonFormField(
               validator: (value) {
-                return value == null ? "Please Select Monthly Expences" : null;
+                return value == null || value == "- Choose Option -"
+                    ? "Please Select Monthly Expences"
+                    : null;
               },
               isDense: true,
               decoration: InputDecoration(
@@ -126,7 +127,6 @@ class _Info_pageState extends State<Info_page> {
                   fillColor: Colors.white,
                   filled: true),
               items: [
-                "- Choose Option -",
                 "300 - 1,000",
                 "1000 - 5000",
                 "5,000 - 10,000",

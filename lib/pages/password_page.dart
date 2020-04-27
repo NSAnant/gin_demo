@@ -227,7 +227,7 @@ class _Password_pageState extends State<Password_page> {
         str = "Weak";
         break;
       case 1:
-        str = "Weak";
+        str = "Very Weak";
         break;
       case 0:
         str = "";

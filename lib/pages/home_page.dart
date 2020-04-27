@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gin_app/pages/email_page.dart';
 import 'package:gin_app/pages/info_page.dart';
 import 'package:gin_app/pages/password_page.dart';
+import 'package:gin_app/pages/video_call_page.dart';
 import 'package:gin_app/wigets/custom_widget.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,7 +16,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _numberOfSteps = 4;
-  int _currentStep = 3;
+  int _currentStep = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,6 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
             _currentStep = 4;
           });
         });
+      case 4:
+        return Video_Page();
     }
   }
 
