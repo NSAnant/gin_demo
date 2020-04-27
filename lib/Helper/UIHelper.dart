@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class UIHelper {
+  static const verySmallVerticalSpace = SizedBox(
+    height: 10,
+  );
   static const smallVerticalSpace = SizedBox(
     height: 20,
   );
