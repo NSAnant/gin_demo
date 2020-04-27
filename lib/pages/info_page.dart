@@ -11,6 +11,7 @@ class Info_page extends StatefulWidget {
 }
 
 class _Info_pageState extends State<Info_page> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String activationReason;
   String income;
   String exp;
@@ -26,11 +27,17 @@ class _Info_pageState extends State<Info_page> {
     return Container(
       padding: EdgeInsets.fromLTRB(20, 50, 20, 10),
       child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             DropdownButtonFormField(
+              validator: (value) {
+                return value == null
+                    ? "Please Select Goal for activation"
+                    : null;
+              },
               isDense: true,
               decoration: InputDecoration(
                 hintText: 'hint Text',
@@ -65,6 +72,9 @@ class _Info_pageState extends State<Info_page> {
             ),
             UIHelper.smallVerticalSpace,
             DropdownButtonFormField(
+              validator: (value) {
+                return value == null ? "Please Select Monthly Income" : null;
+              },
               isDense: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -100,6 +110,9 @@ class _Info_pageState extends State<Info_page> {
             ),
             UIHelper.smallVerticalSpace,
             DropdownButtonFormField(
+              validator: (value) {
+                return value == null ? "Please Select Monthly Expences" : null;
+              },
               isDense: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -107,9 +120,9 @@ class _Info_pageState extends State<Info_page> {
                     gapPadding: 0,
                   ),
                   contentPadding: EdgeInsets.all(5),
-                  hintText: 'Monthly Income',
+                  hintText: 'Monthly Expences',
                   hasFloatingPlaceholder: false,
-                  labelText: 'Monthly Income',
+                  labelText: 'Monthly Expences',
                   fillColor: Colors.white,
                   filled: true),
               items: [
@@ -143,7 +156,9 @@ class _Info_pageState extends State<Info_page> {
                 color: AppColors.bgWhite.withOpacity(0.4),
                 onPressed: () {
                   // check validity and call..
-                  widget.onStepCompletion();
+                  if (_formKey.currentState.validate()) {
+                    widget.onStepCompletion();
+                  }
                 },
                 child: Text('Next'),
               ),
