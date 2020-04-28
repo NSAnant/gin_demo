@@ -7,11 +7,10 @@ A Flutter assginment from Dkatalis for Flutter Developer.
 Please find resources for more details. 
 - [Requirements](https://github.com/NSAnant/gin_demo/blob/master/Flutter_Assignment_%20Dkatalis.pdf)
 
-A few resources to get you started if this is your first Flutter project:
+## NOTE 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Please note that, this project is implemented on the basis on limited requirments as above also, There might be needed more changes and refacotring incase need to reuse this code on for the production app. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Please contact [me](nikate.shri@gmail.com) for more info. 
+
+
